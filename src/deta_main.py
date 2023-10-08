@@ -23,6 +23,7 @@ def setup_app():
 
     @fastapi_app.post(webhook_path)
     async def bot_webhook(update: dict):
+        # TODO: check for secret token header
         res = await dispatcher.feed_webhook_update(bot, update)
         return res
 
