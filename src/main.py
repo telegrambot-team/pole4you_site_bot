@@ -1,7 +1,6 @@
 import logging
 
 from aiogram import Bot, Dispatcher
-
 from deta_state_srorage import DetaStateStorage
 from handlers.basic_handlers import router as basic_router
 from middleware.logging_middleware import LoggingMiddleware

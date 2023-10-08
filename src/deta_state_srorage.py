@@ -14,7 +14,7 @@ class DetaStateStorage(BaseStorage):
         self.data_db = self.deta.Base("aiogram_data")
 
     async def set_state(
-            self, key: StorageKey, state: StateType = None
+            self, key: StorageKey, state: StateType = None,
     ) -> None:
         value = cast(str, state.state if isinstance(state, State) else state)
         key = str(key.user_id)

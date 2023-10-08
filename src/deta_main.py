@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from main import setup_dispatcher
 from settings import Settings
 
