@@ -60,14 +60,14 @@ questions = [
                  Answer(answer_text="Нет", next_question=6),
              ]),
     Question(question_text="Можно ли сверлить пол?",
-             answer=[
+             answers=[
                  Answer(answer_text="Да", next_question=7),
                  Answer(answer_text="Не хотелось бы, но если это необходимо для безопасности, то скорее да",
                         next_question=7),
                  Answer(answer_text="Нет", next_question=7),
              ]),
     Question(question_text="Как часто вы планируете снимать пилон?",
-             answer=[
+             answers=[
                  Answer(answer_text="Не планирую", next_question=8),
                  Answer(answer_text="Редко, не более раза в месяц", next_question=8),
                  Answer(answer_text="Почти каждый день", next_question=8),
@@ -76,8 +76,9 @@ questions = [
                  Answer(answer_text="Пилон будет переезжать в разные помещения", next_question=8),
              ]),
     Question(
-        question_text="Какая высота от натяжного (подвесного) потолка до основного (бетонного или др, в который можно закрепить пилон)",
-        answer=[
+        question_text="Какая высота от натяжного (подвесного) потолка до основного "
+                      "(бетонного или др, в который можно закрепить пилон)",
+        answers=[
             Answer(answer_text="до 8 см.", next_question=9),
             Answer(answer_text="от 8 до 15 см.", next_question=9),
             Answer(answer_text="от 15 до 30 см.", next_question=9),
@@ -86,13 +87,17 @@ questions = [
         ]),
     Question(
         question_text="Выберите вариант по Вашим потребностям",
-        answer=[
+        answers=[
             Answer(
-                answer_text="LITE - обычная полировка трубы, опоры черного цвета, без запаса по нагрузке, более простая комплектация",
+                answer_text="LITE - обычная полировка трубы, опоры черного цвета, без запаса по нагрузке,"
+                            " более простая комплектация",
                 next_question=10),
             Answer(
-                answer_text="PRO - профессиональная полировка трубы, блестящие опоры в цвет трубы, крепления рассчитанные на повышенные, профессиональные нагрузки, все функции и комплектация",
+                answer_text="PRO - профессиональная полировка трубы, блестящие опоры в цвет трубы, крепления"
+                            " рассчитанные на повышенные, профессиональные нагрузки, все функции и комплектация",
                 next_question=10),
-        ]
-    )
+        ],
+    ),
 ]
+
+

@@ -2,10 +2,9 @@ import base64
 import binascii
 import logging
 
-from aiogram import Router, types, F, Bot
+from aiogram import Bot, F, Router, types
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
-
 from settings import Settings
 from tables.reply_map_table import ReplyMapTable
 
@@ -20,7 +19,7 @@ async def start_handler(message: types.Message, state: FSMContext, command: Comm
         "username": message.from_user.username,
     })
     await message.answer("Вас приветствует команда поддержки pole4you!\n"
-                         "Напишите нам, и мы обязательно решим ваш вопрос!"
+                         "Напишите нам, и мы обязательно решим ваш вопрос!",
                          )
 
     logging.info(f"{command.args=}")
@@ -51,7 +50,7 @@ async def user_message_handler(message: types.Message, state: FSMContext, bot: B
         del data['from_page']
 
     forwarded_msg = await message.forward(support_chat)
-    reply_map.set(original_chat_id=message.from_user.id,
-                  forwarded_msg_id=forwarded_msg.message_id,
-                  original_msg_id=message.message_id)
+    reply_map.save(original_chat_id=message.from_user.id,
+                   forwarded_msg_id=forwarded_msg.message_id,
+                   original_msg_id=message.message_id)
     await message.answer("Наша служба поддержки ответит вам в ближайшее время!")

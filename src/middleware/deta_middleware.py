@@ -4,7 +4,6 @@ from typing import Any, Awaitable, Callable
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
 from deta import Deta
-
 from tables.reply_map_table import ReplyMapTable
 
 

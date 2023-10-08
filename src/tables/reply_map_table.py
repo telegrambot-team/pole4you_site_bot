@@ -16,10 +16,10 @@ class ReplyMapTable:
     def __init__(self, base: BaseType):
         self.base = base
 
-    def set(self, original_chat_id, forwarded_msg_id, original_msg_id):
+    def save(self, original_chat_id, forwarded_msg_id, original_msg_id):
         self.base.put(data={
             'original_chat_id': original_chat_id,
-            'original_msg_id': original_msg_id
+            'original_msg_id': original_msg_id,
         }, key=str(forwarded_msg_id))
 
     def get(self, key) -> Optional[ReplyRow]:
