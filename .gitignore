@@ -2,4 +2,4 @@
 .ruff_cache
 venv
 .idea
-src/telegramTemplateMVC.egg-info
+src/*.egg-info
