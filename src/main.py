@@ -3,6 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from deta_state_srorage import DetaStateStorage
 from handlers.basic_handlers import router as basic_router
+from handlers.errors_handlers import router as error_router
 from middleware.logging_middleware import LoggingMiddleware
 from middleware.upd_dumper_middleware import UpdatesDumperMiddleware
 from settings import Settings
@@ -34,6 +35,7 @@ def setup_dispatcher():
     dispatcher.callback_query.middleware.register(LoggingMiddleware())
 
     dispatcher.include_router(basic_router)
+    dispatcher.include_router(error_router)
 
     return dispatcher, bot
 

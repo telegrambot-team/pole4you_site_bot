@@ -16,7 +16,7 @@ class UpdatesDumperMiddleware(BaseMiddleware):
             event: Update,
             data: Dict[str, Any],
     ) -> Any:
-        json_event = event.json()
+        json_event = event.model_dump_json(exclude_unset=True)
         key = str(event.update_id)
         self.updates_db.put(json_event, key=key)
 
