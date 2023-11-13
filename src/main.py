@@ -42,8 +42,8 @@ def setup_dispatcher():
     dispatcher.callback_query.middleware.register(LoggingMiddleware())
 
     dispatcher.include_router(admin_router)
-    dispatcher.include_router(basic_router)
     dispatcher.include_router(survey_router)
+    dispatcher.include_router(basic_router)
     dispatcher.include_router(error_router)
 
     return dispatcher, bot
