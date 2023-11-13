@@ -5,6 +5,7 @@ from deta_state_srorage import DetaStateStorage
 from handlers.admin_handlers import router as admin_router
 from handlers.basic_handlers import router as basic_router
 from handlers.errors_handlers import router as error_router
+from handlers.survey_handler import router as survey_router
 from middleware.deta_middleware import DetaMiddleware
 from middleware.logging_middleware import LoggingMiddleware
 from middleware.upd_dumper_middleware import UpdatesDumperMiddleware
@@ -41,6 +42,7 @@ def setup_dispatcher():
     dispatcher.callback_query.middleware.register(LoggingMiddleware())
 
     dispatcher.include_router(admin_router)
+    dispatcher.include_router(survey_router)
     dispatcher.include_router(basic_router)
     dispatcher.include_router(error_router)
 
