@@ -9,7 +9,3 @@ def create_answer_keyboard(question_index: int) -> InlineKeyboardMarkup:
         buttons.append(button)
     kbrd = InlineKeyboardMarkup(inline_keyboard=buttons)
     return kbrd
-
-
-question_number = 1  # Номер вопроса
-keyboard = create_answer_keyboard(question_number)
