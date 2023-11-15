@@ -25,8 +25,8 @@ async def survey_routine(question_index: int, message: types.message.Message, st
     data = await state.get_data()
     try:
         if question_index is None or question_index >= len(questions):
-            await message.edit_text(f"Конец опроса, ваш код: {data['survey_code']}\n"
-                                    f"Ваш ответ: {get_answer(data['survey_code'])}")
+            await message.edit_text(f"Конец опроса. Ваш код: {data['survey_code'][1:].replace('-', '0')}.\n\n"
+                                    f"<b>{get_answer(data['survey_code'])}</b>")
             await state.update_data(survey_code=data['survey_code'])
             return
 
@@ -58,25 +58,26 @@ async def survey_routine(question_index: int, message: types.message.Message, st
         elif question_index == 7 and data['survey_code'][1] == '6':
             data['survey_code'] = data['survey_code'][:7] + '--'
             await state.update_data(survey_code=data['survey_code'])
-            await message.edit_text(f"Конец опроса, ваш код: {data['survey_code']}")
+            await message.edit_text(f"Конец опроса. Ваш код: {data['survey_code'][1:].replace('-', '0')}.\n\n"
+                                    f"<b>{get_answer(data['survey_code'])}</b>")
 
         elif question_index == 7 and data['survey_code'][0] == '7':
             data['survey_code'] = data['survey_code'][:7] + '--'
             await state.update_data(survey_code=data['survey_code'])
-            await message.edit_text(f"Конец опроса, ваш код: {data['survey_code']}\n"
-                                    f"Ваш ответ: {get_answer(data['survey_code'])}")
+            await message.edit_text(f"Конец опроса. Ваш код: {data['survey_code'][1:].replace('-', '0')}.\n\n"
+                                    f"<b>{get_answer(data['survey_code'])}</b>")
             await state.update_data(survey_code=data['survey_code'])
         elif question_index == 7 and data['survey_code'][1] in '12345789':
+            data['survey_code'] = data['survey_code'][:7] + '-' + data['survey_code'][8:]
             await state.update_data(survey_code=data['survey_code'])
-            await message.edit_text(f"Конец опроса, ваш код: {data['survey_code']}\n"
-                                    f"Ваш ответ: {get_answer(data['survey_code'])}")
-            await state.update_data(survey_code=data['survey_code'])
+            await message.edit_text(f"{questions[question_index + 1].question_text}",
+                                    reply_markup=get_answer_keyboard(question_index + 1))
         else:
             await message.edit_text(f"{questions[question_index].question_text}", reply_markup=get_answer_keyboard(question_index))
     except TelegramBadRequest:
         if question_index is None or question_index >= len(questions):
-            await message.answer(f"Конец опроса, ваш код: {data['survey_code']}\n"
-                                 f"Ваш ответ: {get_answer(data['survey_code'])}")
+            await message.answer(f"Конец опроса. Ваш код: {data['survey_code'][1:].replace('-', '0')}.\n\n"
+                                 f"<b>{get_answer(data['survey_code'])}</b>")
             await state.update_data(survey_code=data['survey_code'])
             return
         else:

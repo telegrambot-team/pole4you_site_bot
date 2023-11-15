@@ -27,7 +27,7 @@ def setup_dispatcher():
 
     sett = Settings()
 
-    bot = Bot(token=sett.bot_token.get_secret_value())
+    bot = Bot(token=sett.bot_token.get_secret_value(), parse_mode="HTML")
 
     storage = DetaStateStorage(sett.deta_project_key.get_secret_value())
     dispatcher = Dispatcher(storage=storage)
