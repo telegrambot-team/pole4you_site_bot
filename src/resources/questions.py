@@ -11,7 +11,6 @@ class Answer(BaseModel):
 
 class Question(BaseModel):
     model_config = ConfigDict(frozen=True)
-
     question_number: int
     question_text: str
     answers: list[Answer]

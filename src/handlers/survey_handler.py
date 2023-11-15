@@ -22,5 +22,6 @@ async def answer_handler(callback: types.CallbackQuery, state: FSMContext):
     new_survey_code = data['survey_code'][:question_index] + str(answer_code) + data['survey_code'][question_index + 1:]
     print(new_survey_code)
     await state.update_data(survey_code=new_survey_code)
+
     next_question_index = determine_next_question_index(new_survey_code)
     await survey_routine(next_question_index, callback.message, state)

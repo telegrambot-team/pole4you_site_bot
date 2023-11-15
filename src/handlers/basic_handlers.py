@@ -18,7 +18,7 @@ async def start_handler(message: types.Message, state: FSMContext, command: Comm
         "id": message.from_user.id,
         "name": message.from_user.full_name,
         "username": message.from_user.username,
-        "survey_code": '000000000'
+        "survey_code": '000000000',
     })
     await message.answer("Вас приветствует команда поддержки pole4you!\n"
                          "Напишите нам, и мы обязательно решим ваш вопрос!",
