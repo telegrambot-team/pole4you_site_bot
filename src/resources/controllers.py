@@ -6,7 +6,7 @@ from aiogram.fsm.context import FSMContext
 
 from resources.answer import result, text
 from resources.keyboards import get_answer_keyboard, get_answer_keyboard_without_roof
-from src.resources.questions import questions
+from resources.questions import questions
 
 
 def get_answer(code: str) -> str:
