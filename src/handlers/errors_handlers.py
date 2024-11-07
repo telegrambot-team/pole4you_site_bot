@@ -1,29 +1,31 @@
-import sys
+import logging
 import traceback
 import typing
 
 import aiogram
+from aiogram import Router, html
 
 from settings import Settings
 
 if typing.TYPE_CHECKING:
     from aiogram.types.error_event import ErrorEvent
 
-import logging
-
-from aiogram import Router
-
 router = Router()
 
 
 @router.errors()
-async def error_handler(exception: 'ErrorEvent', bot: aiogram.Bot):
-    print("Handled exception:", exception)
-    logging.exception(exception.update)
-    exc_type, exc_value, exc_traceback = sys.exc_info()
-    exc_msg = ' - '.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-    while exc_msg:
-        block = exc_msg[:500]
-        await bot.send_message(Settings.admin_id, block)
-        exc_msg = exc_msg[500:]
-    return True
+async def error_handler(error_event: "ErrorEvent", bot: aiogram.Bot, settings: Settings):
+    exc_info = error_event.exception
+    exc_traceback = "".join(traceback.format_exception(None, exc_info, exc_info.__traceback__))
+
+    tb = html.quote(exc_traceback[-3500:])
+    exc_name = html.quote(type(exc_info).__name__)
+    exc_info = html.quote(str(exc_info))
+
+    error_message = (
+        f"🚨 <b>An error occurred</b> 🚨\n\n"
+        f"<b>Type:</b> {exc_name}\n<b>Message:</b> {exc_info}\n\n<b>Traceback:</b>\n<code>{tb}</code>"
+    )
+    logging.exception("Exception:", exc_info=exc_info)
+
+    await bot.send_message(settings.admin_id, error_message)
