@@ -4,6 +4,8 @@ import typing
 
 import aiogram
 
+from settings import Settings
+
 if typing.TYPE_CHECKING:
     from aiogram.types.error_event import ErrorEvent
 
@@ -22,6 +24,6 @@ async def error_handler(exception: 'ErrorEvent', bot: aiogram.Bot):
     exc_msg = ' - '.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
     while exc_msg:
         block = exc_msg[:500]
-        await bot.send_message(99988303, block)
+        await bot.send_message(Settings.admin_id, block)
         exc_msg = exc_msg[500:]
     return True
