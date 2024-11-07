@@ -29,7 +29,7 @@ def setup_dispatcher():
     bot = Bot(token=sett.bot_token.get_secret_value(), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     storage = RedisStorage.from_url(sett.redis_url.unicode_string())
-    dispatcher = Dispatcher(storage=storage, redis=storage.redis)
+    dispatcher = Dispatcher(storage=storage, redis=storage.redis, settings=sett)
 
     dispatcher.update.outer_middleware(UpdatesDumperMiddleware())
 
