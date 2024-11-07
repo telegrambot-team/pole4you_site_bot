@@ -22,11 +22,11 @@ async def start_handler(message: types.Message, state: FSMContext, command: Comm
         "survey_code": '000000000',
     })
     await message.answer("Вас приветствует команда поддержки pole4you!\n"
-                         "Напишите нам, и мы обязательно решим ваш вопрос!",
-                         reply_markup=types.ReplyKeyboardMarkup(is_persistent=True,
-                                                                resize_keyboard=True,
-                                                                keyboard=[
-                                                                    [types.KeyboardButton(text="Пройти опрос")]]), ),
+                         "Напишите нам, и мы обязательно решим ваш вопрос!",)
+                         # reply_markup=types.ReplyKeyboardMarkup(is_persistent=True,
+                         #                                        resize_keyboard=True,
+                         #                                        keyboard=[
+                         #                                            [types.KeyboardButton(text="Пройти опрос")]]), ),
 
     logging.info(f"{command.args=}")
 
